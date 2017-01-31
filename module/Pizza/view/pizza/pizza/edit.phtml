@@ -1,0 +1,62 @@
+<?php
+$title = 'Add Toppings To Pizza';
+$this->headTitle($title);
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div class="alert-success">
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         &times;
+     </button>
+     <ul><li>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+
+echo $flash->render('error',   array('alert', 'alert-dismissible', 'alert-danger'));
+echo $flash->render('info',    array('alert', 'alert-dismissible', 'alert-info'));
+echo $flash->render('default', array('alert', 'alert-dismissible', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('pizza', array('action'=>'index'));?>">Return To All Pizzas</a>
+</p>
+<h3><?php echo $this->escapeHtml($pizza['name']) . ' - ' . $this->escapeHtml($pizza['description'])?></h3>
+<div class="row"></div>
+<h4>Added Toppings:</h4>
+<table class="table">
+    <tr>
+        <th>Topping Name</th>
+        <th>Action</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($pizza['toppings'] as $topping) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($topping['name']);?></td>
+            <td>Added</td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+<div class="row"></div>
+<h4>Available Toppings:</h4>
+<table class="table">
+    <tr>
+        <th>Topping Name</th>
+        <th>Action</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($pizza['available_toppings'] as $topping) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($topping['name']);?></td>
+            <td>
+                <a href="<?php
+                $options = ['query' => ['topping_id' => $topping['id']]];
+                echo $this->url('pizza',
+                    array('action'=>'addt', 'id' => $pizza['id']),$options);?>">Add Toppings</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+
+
+

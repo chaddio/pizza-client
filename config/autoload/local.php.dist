@@ -1,0 +1,39 @@
+<?php
+/**
+ * Local Configuration Override
+ *
+ * This configuration override file is for overriding environment-specific and
+ * security-sensitive configuration information. Copy this file without the
+ * .dist extension at the end and populate values as needed.
+ *
+ * @NOTE: This file is ignored from Git by default with the .gitignore included
+ * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
+ * credentials from accidentally being committed into version control.
+ */
+error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE & ~E_WARNING);
+ini_set('display_errors', true);
+
+date_default_timezone_set('America/Phoenix');
+
+return array(
+    'Cache\Persistence' =>
+    // leave uncommented to turn off persistent caching
+        null,
+
+    // uncomment to turn on filessystem caching
+//             array(
+//                 'adapter' => 'filesystem',
+//                 'ttl'     => 86400,
+//                 'options' => array(
+//                     'cache_dir' => APPLICATION_PATH . '/data/cache/',
+//                     'namespace' => 'tshift',
+//                 ),
+//                 'plugins' => array(
+//                     'exception_handler' => array(
+//                         'throw_exceptions' => true,
+//                     ),
+//                     'serializer',
+//                 ),
+//             ),
+
+);
